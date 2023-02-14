@@ -52,7 +52,7 @@ class Fstatement(models.Model):
         f = self.bs_fixed_liabilities / self.bs_total_assets() * 100
         return f
 
-    def net_profir_rate(self):
+    def net_assets_rate(self):
         f = self.bs_net_assets / self.bs_total_assets() * 100
         return f
     
@@ -79,4 +79,21 @@ class Fstatement(models.Model):
     def cf_total_amount(self):
         f = self.cf_operating + self.cf_investment + self.cf_finance
         return f
+
+    def current_rate(self):
+        if self.bs_current_liabilities > 0:
+            f = self.bs_current_assets / self.bs_current_liabilities * 100
+        else:
+            f = '-'
+        return f
+    
+    def roe(self):
+        f = self.pl_operating_profit / self.bs_net_assets * 100
+        return f
+
+    def roa(self):
+        f = self.pl_operating_profit / self.bs_total_assets() * 100
+        return f
+    
+
 
