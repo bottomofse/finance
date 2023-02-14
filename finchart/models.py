@@ -1,5 +1,6 @@
 from urllib.parse import DefragResult
 from django.db import models
+import numpy
 
 class Company(models.Model):
     name = models.CharField('会社名', max_length=30, blank=False)
@@ -37,43 +38,43 @@ class Fstatement(models.Model):
         return f
 
     def current_assets_rate(self):
-        f = self.bs_current_assets / self.bs_total_assets() * 100
+        f = numpy.float64(self.bs_current_assets) / self.bs_total_assets() * 100
         return f
 
     def fixed_deferred_assets_rate(self):
-        f = self.bs_deferred_assets / self.bs_total_assets() * 100
+        f = numpy.float64(self.bs_deferred_assets) / self.bs_total_assets() * 100
         return f
 
     def current_liabilities_rate(self):
-        f = self.bs_fixed_liabilities / self.bs_total_assets() * 100
+        f = numpy.float64(self.bs_fixed_liabilities) / self.bs_total_assets() * 100
         return f
 
     def fixed_liabilities_rate(self):
-        f = self.bs_fixed_liabilities / self.bs_total_assets() * 100
+        f = numpy.float64(self.bs_fixed_liabilities) / self.bs_total_assets() * 100
         return f
 
     def net_assets_rate(self):
-        f = self.bs_net_assets / self.bs_total_assets() * 100
+        f = numpy.float64(self.bs_net_assets) / self.bs_total_assets() * 100
         return f
     
     def gross_profit_rate(self):
-        f = self.pl_gross_profit / self.pl_gross_sales * 100
+        f = numpy.float64(self.pl_gross_profit) / self.pl_gross_sales * 100
         return f
 
     def operating_profit_rate(self):
-        f = self.pl_operating_profit / self.pl_gross_sales * 100
+        f = numpy.float64(self.pl_operating_profit) / self.pl_gross_sales * 100
         return f
 
     def ordinary_income_rate(self):
-        f = self.pl_ordinary_income / self.pl_gross_sales * 100
+        f = numpy.float64(self.pl_ordinary_income) / self.pl_gross_sales * 100
         return f
 
     def income_before_tax_rate(self):
-        f = self.pl_income_before_tax / self.pl_gross_sales * 100
+        f = numpy.float64(self.pl_income_before_tax) / self.pl_gross_sales * 100
         return f
     
     def net_income_rate(self):
-        f = self.pl_net_income / self.pl_gross_sales * 100
+        f = numpy.float64(self.pl_net_income) / self.pl_gross_sales * 100
         return f
 
     def cf_total_amount(self):
@@ -81,18 +82,15 @@ class Fstatement(models.Model):
         return f
 
     def current_rate(self):
-        if self.bs_current_liabilities > 0:
-            f = self.bs_current_assets / self.bs_current_liabilities * 100
-        else:
-            f = '-'
+        f = numpy.float64(self.bs_current_assets) / self.bs_current_liabilities * 100
         return f
     
     def roe(self):
-        f = self.pl_operating_profit / self.bs_net_assets * 100
+        f = numpy.float64(self.pl_operating_profit) / self.bs_net_assets * 100
         return f
 
     def roa(self):
-        f = self.pl_operating_profit / self.bs_total_assets() * 100
+        f = numpy.float64(self.pl_operating_profit) / self.bs_total_assets() * 100
         return f
     
 
