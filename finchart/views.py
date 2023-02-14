@@ -26,3 +26,6 @@ class CompanyView(DetailView):
             'fstatement_list': fstatement_list,
         }
         return params
+
+class FstatementView(DetailView):
+    model = Fstatement
