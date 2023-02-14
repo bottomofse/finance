@@ -22,7 +22,7 @@ class Fstatement(models.Model):
     pl_gross_profit = models.IntegerField('売上総利益（百万円）',default=0)
     pl_operating_profit = models.IntegerField('営業利益（百万円）', default=0)
     pl_ordinary_income = models.IntegerField('経常利益（百万円）',default=0)
-    pl_income_before_tax = models.IntegerField('売上前当期純利益（百万円）', default=0)
+    pl_income_before_tax = models.IntegerField('税引前当期純利益（百万円）', default=0)
     pl_net_income = models.IntegerField('当期純利益（百万円）', default=0)
     
     cf_operating = models.IntegerField('営業CF（百万円）', default=0)
